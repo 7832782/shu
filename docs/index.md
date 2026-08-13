@@ -8,5 +8,5 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /第01章_同组的陌生人
+      link: /第01章_想逗逗你
 ---
