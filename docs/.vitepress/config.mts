@@ -29,10 +29,26 @@ function countChars(content: string): number {
   return text.replace(/\s/g, '').length
 }
 
-// 按卷分组生成侧边栏
+// 按卷分组生成侧边栏，卷组标题显示该卷总字数
+const volumeTotals = volumes.map((v) => ({
+  name: v.name,
+  from: v.from,
+  to: v.to,
+  total: chapters
+    .filter((f) => chapterNo(f) >= v.from && chapterNo(f) <= v.to)
+    .reduce(
+      (sum, f) => sum + countChars(readFileSync('docs/' + f, 'utf-8')),
+      0
+    )
+}))
+
 const sidebar = volumes
   .map((v) => ({
-    text: v.name,
+    text:
+      v.name +
+      '\n' +
+      volumeTotals.find((t) => t.from === v.from)!.total +
+      '字',
     collapsed: false,
     items: chapters
       .filter((f) => chapterNo(f) >= v.from && chapterNo(f) <= v.to)
@@ -62,6 +78,7 @@ export default defineConfig({
     darkModeSwitchLabel: '外观',
     sidebarMenuLabel: '目录',
     returnToTopLabel: '回到顶部',
-    lastUpdated: false
-  }
+    lastUpdated: false,
+    volumesWithTotal: volumeTotals
+  } as any
 })

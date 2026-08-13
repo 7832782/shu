@@ -4,22 +4,26 @@ import { useData } from 'vitepress'
 import { volumeOf } from '../volumes'
 import './custom.css'
 
-// 自定义布局：在每章正文前显示所属卷的卷标（卷号一行，卷名一行）
+// 自定义布局：每章正文前显示所属卷（卷名一行，卷总字数一行）
 const Layout = {
   setup() {
-    const { page } = useData()
+    const { page, theme } = useData()
     return () => {
       const m = page.value.relativePath.match(/^第(\d+)章_/)
       const vol = m ? volumeOf(Number(m[1])) : undefined
-      const parts = vol ? vol.name.split(' · ') : []
-      const volNo = parts[0] ?? ''
-      const volTitle = parts.slice(1).join(' · ') || null
+      const volInfo = vol
+        ? ((theme.value as any).volumesWithTotal ?? []).find(
+            (t: { from: number }) => t.from === vol.from
+          )
+        : undefined
       return h(DefaultTheme.Layout, null, {
         'doc-before': () =>
           vol
             ? h('div', { class: 'volume-badge' }, [
-                h('div', { class: 'volume-no' }, volNo),
-                volTitle ? h('div', { class: 'volume-title' }, volTitle) : null
+                h('div', { class: 'volume-name' }, vol.name),
+                volInfo
+                  ? h('div', { class: 'volume-total' }, volInfo.total + '字')
+                  : null
               ])
             : null
       })

@@ -14,7 +14,7 @@ body {
   line-height: 1.95;
 }
 
-/* 卷标：卷号一行，卷名一行 */
+/* 卷标：卷名一行，卷总字数一行 */
 .volume-badge {
   text-align: center;
   margin: 0 auto 1.6rem;
@@ -22,19 +22,24 @@ body {
   border-bottom: 1px solid var(--vp-c-divider);
 }
 
-.volume-no {
-  font-size: 0.8rem;
-  letter-spacing: 0.45em;
-  text-indent: 0.45em;
-  color: var(--vp-c-text-3);
+.volume-name {
+  font-size: 1.02rem;
+  letter-spacing: 0.25em;
+  text-indent: 0.25em;
+  color: var(--vp-c-text-1);
 }
 
-.volume-title {
-  font-size: 1rem;
-  letter-spacing: 0.35em;
-  text-indent: 0.35em;
-  color: var(--vp-c-text-2);
+.volume-total {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--vp-c-text-3);
   margin-top: 0.35rem;
+}
+
+/* 侧边栏卷组标题：卷名一行、卷字数一行 */
+.VPSidebarItem.level-0 .text {
+  white-space: pre-line;
+  line-height: 1.6;
 }
 
 /* 章节标题居中 */
