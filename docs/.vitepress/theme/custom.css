@@ -1,0 +1,44 @@
+:root {
+  --vp-font-family-base: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC',
+    'SimSun', serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Sarasa Mono SC', Consolas, monospace;
+  --vp-layout-max-width: 900px;
+}
+
+body {
+  letter-spacing: 0.02em;
+}
+
+.vp-doc {
+  font-size: 1.05rem;
+  line-height: 1.95;
+}
+
+/* 章节标题居中 */
+.vp-doc h1 {
+  font-size: 1.7em;
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+
+/* 题记（章节开头的引用） */
+.vp-doc blockquote {
+  border-left: 2px solid var(--vp-c-brand-1);
+  background: rgba(100, 108, 255, 0.05);
+  border-radius: 4px;
+  padding: 0.8rem 1.2rem;
+  margin: 1.5rem 0 2.2rem;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 分节符 */
+.vp-doc hr {
+  width: 40%;
+  margin: 2.5rem auto;
+  border: none;
+  border-top: 1px solid var(--vp-c-divider);
+}
