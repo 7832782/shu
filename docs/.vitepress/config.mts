@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+﻿import { defineConfig } from 'vitepress'
 import { readdirSync } from 'node:fs'
 import { volumes } from './volumes'
 
@@ -29,6 +29,7 @@ export default defineConfig({
   lang: 'zh-CN',
   title: '答案',
   description: '四十三章回忆录',
+
   cleanUrls: true,
   head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
   themeConfig: {
