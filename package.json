@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "docs:build": "node -e \"fs.rmSync('docs/.vitepress/dist',{recursive:true,force:true});fs.rmSync('docs/.vitepress/cache',{recursive:true,force:true})\" && vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {

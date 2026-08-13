@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
 import { readdirSync } from 'node:fs'
+import { volumes } from './volumes'
 
-// 自动扫描 docs 下的章节文件，按章号排序生成目录
+// 自动扫描 docs 下的章节文件，按章号排序
 const chapters = readdirSync('docs')
   .filter((f) => /^第\d+章_.+\.md$/.test(f))
   .sort(
@@ -10,10 +11,19 @@ const chapters = readdirSync('docs')
       Number(b.match(/^第(\d+)章/)?.[1] ?? 0)
   )
 
-const chapterItems = chapters.map((f) => ({
-  text: f.replace(/^第(\d+)章_(.+)\.md$/, '$1 $2'),
-  link: '/' + f.replace(/\.md$/, '')
-}))
+const chapterNo = (f: string) => Number(f.match(/^第(\d+)章/)?.[1] ?? 0)
+const itemText = (f: string) => f.replace(/^第(\d+)章_(.+)\.md$/, '$1 $2')
+
+// 按卷分组生成侧边栏
+const sidebar = volumes
+  .map((v) => ({
+    text: v.name,
+    collapsed: false,
+    items: chapters
+      .filter((f) => chapterNo(f) >= v.from && chapterNo(f) <= v.to)
+      .map((f) => ({ text: itemText(f), link: '/' + f.replace(/\.md$/, '') }))
+  }))
+  .filter((g) => g.items.length > 0)
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -23,7 +33,7 @@ export default defineConfig({
   head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
   themeConfig: {
     nav: [{ text: '目录', link: '/' }],
-    sidebar: [{ text: '章节', collapsed: false, items: chapterItems }],
+    sidebar,
     docFooter: { prev: '上一章', next: '下一章' },
     outline: false,
     search: { provider: 'local' },
