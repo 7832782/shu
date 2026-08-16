@@ -68,7 +68,7 @@ export default defineConfig({
   description: '四十三章回忆录',
   base: '/shu/',
   cleanUrls: true,
-  head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
+  head: [['link', { rel: 'icon', href: '/shu/favicon.svg' }]],
   themeConfig: {
     nav: [{ text: '目录', link: '/' }],
     sidebar,
