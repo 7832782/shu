@@ -57,6 +57,12 @@ body {
   padding: 0.8rem 1.2rem;
   margin: 1.5rem 0 2.2rem;
   color: var(--vp-c-text-2);
+  line-height: 1.95;
+}
+
+.vp-doc blockquote p {
+  line-height: 1.95;
+  margin: 0.6em 0;
 }
 
 .vp-doc blockquote p:last-child {
