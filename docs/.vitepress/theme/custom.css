@@ -69,6 +69,30 @@ body {
   margin-bottom: 0;
 }
 
+/* 章首题记：居中题词风，与书信引用块区分（书信＝有框有底，题记＝居中无框） */
+.vp-doc h1 + blockquote {
+  border-left: none;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0.6rem auto 2.6rem;
+  max-width: 80%;
+  text-align: center;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc h1 + blockquote p {
+  text-align: center;
+  line-height: 1.9;
+  margin: 0;
+}
+
+.vp-doc h1 + blockquote p:last-of-type {
+  font-size: 0.85em;
+  color: var(--vp-c-text-3);
+  margin-top: 0.6em;
+}
+
 /* 分节符 */
 .vp-doc hr {
   width: 40%;
